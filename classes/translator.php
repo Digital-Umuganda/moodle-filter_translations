@@ -28,6 +28,7 @@ namespace filter_translations;
 use cache;
 use filter_translations\translationproviders\googletranslate;
 use filter_translations\translationproviders\languagestringreverse;
+use filter_translations\translationproviders\translatetokinya;
 
 /**
  *
@@ -63,6 +64,7 @@ class translator {
         global $CFG;
 
         $translations = $this->get_string_manager()->get_list_of_translations(true);
+        // print_r($translations);
 
         // Don't translate names of languages.
         if (in_array($text, array_values($translations))) {
@@ -71,12 +73,16 @@ class translator {
 
         // Get a prioritised list of the languages we could translate into - including the target language, any parent languages etc.
         $prioritisedlanguages = $this->get_prioritised_languages($language, $translations);
+        // print_r($prioritisedlanguages);
         // Get all translations that fit any of the prioritised languages.
         $options = $this->get_usable_translations($prioritisedlanguages, $generatedhash, $foundhash);
+        // print_r($options);
         // Get the translation that fits the highest priority language.
         $optionsforbestlanguage = $this->filter_options_by_best_language($options, $prioritisedlanguages);
+        // print_r($optionsforbestlanguage);
         // Pick the best translation based on it's hashes.
         $translation = $this->filter_options_by_best_hash($optionsforbestlanguage, $generatedhash, $foundhash);
+        print_r($translation);
 
         // Never use stale translations that were auto-generated.
         if (!empty($translation) && $generatedhash !== $translation->get('lastgeneratedhash') && $translation->get('translationsource') != translation::SOURCE_MANUAL) {
@@ -96,12 +102,12 @@ class translator {
                 $translation = $languagestringtranslation;
             } else {
                 // No dice... try google translate.
-                $google = new googletranslate();
-                $googletranslation = $google->createorupdate_translation($foundhash, $generatedhash, $text, $language, $translation);
+                $translatetokinya = new translatetokinya();
+                $kinyatranslation = $translatetokinya->createorupdate_translation($foundhash, $generatedhash, $text, $language, $translation);
 
-                if (!empty($googletranslation)) {
-                    self::$googletranslatefetches++;
-                    $translation = $googletranslation;
+                if (!empty($kinyatranslation)) {
+                    // self::$googletranslatefetches++;
+                    $translation = $kinyatranslation;
                 }
             }
         } else if (!empty($translation)) {

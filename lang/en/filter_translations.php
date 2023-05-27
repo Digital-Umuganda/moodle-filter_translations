@@ -126,3 +126,5 @@ $string['untranslatedpages'] = 'Pages to leave untranslated';
 $string['untranslatedpages_desc'] = 'One per line.';
 $string['url'] = 'Page';
 $string['userid'] = 'User ID';
+$string['translatetokinya'] = 'Translate to Kinyarwanda';
+$string['customapi'] = 'Translate to Kinyarwanda API Settings';
