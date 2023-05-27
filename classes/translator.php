@@ -82,7 +82,7 @@ class translator {
         // print_r($optionsforbestlanguage);
         // Pick the best translation based on it's hashes.
         $translation = $this->filter_options_by_best_hash($optionsforbestlanguage, $generatedhash, $foundhash);
-        print_r($translation);
+        // print_r($translation);
 
         // Never use stale translations that were auto-generated.
         if (!empty($translation) && $generatedhash !== $translation->get('lastgeneratedhash') && $translation->get('translationsource') != translation::SOURCE_MANUAL) {
