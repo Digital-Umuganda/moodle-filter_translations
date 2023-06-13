@@ -108,18 +108,36 @@ class translatetokinya extends translationprovider {
             );
         }
 
+        $texts = [];
+
+        if (strstr($text, '.')) {
+            $texts = explode('.', $text);
+            $texts = $this->remove_empty_text_strings($texts);
+            // print_r($texts);
+        }
+
         // $url = new moodle_url($config->google_apiendpoint, ['key' => $config->google_apikey]);
-        $url = new moodle_url("https://nmt-api.umuganda.digital/api/v1/translate/");
+        if (count($texts) > 0) {
+            $url = new moodle_url("https://nmt-api.umuganda.digital/api/v1/translate/batch");
+        } else {
+            $url = new moodle_url("https://nmt-api.umuganda.digital/api/v1/translate/");
+        }
 
         try {
             // print_r($targetlanguage);
-            $resp = $curl->post($url->out(false), json_encode([
+            $params = [
                 'src' => 'en',
                 'tgt' => $targetlanguage,
                 'alt' => '',
-                'use_multi' => 'multi',
-                'text' => $text
-            ]));
+                'use_multi' => 'multi'
+            ];
+            if (count($texts) > 0) {
+                $params['texts'] = $texts;
+            } else {
+                $params['text'] = $text;
+            }
+            // print_r($params);
+            $resp = $curl->post($url->out(false), json_encode($params));
         } catch (\Exception $ex) {
             error_log("Error calling Translate to Kinya API: \n" . $ex->getMessage());
             $this->backoff();
@@ -140,6 +158,12 @@ class translatetokinya extends translationprovider {
             return null;
         }
 
+        if (is_array($resp->translation)) {
+            $text = implode('.', $resp->translation);
+        } else {
+            $text = $resp->translation;
+        }
+
         $text = $resp->translation;
 
         // Swap the base 64 encoded images back in.
@@ -158,5 +182,14 @@ class translatetokinya extends translationprovider {
     private function backoff() {
         set_config('google_backoffonerror', true, 'filter_translations');
         set_config('google_backoffonerror_time', time(), 'filter_translations');
+    }
+
+    private function remove_empty_text_strings(array $texts): array {
+        foreach ($texts as $index => $text) {
+            if (strlen(trim($text)) == 0) {
+                unset($texts[$index]);
+            }
+        }
+        return $texts;
     }
 }
