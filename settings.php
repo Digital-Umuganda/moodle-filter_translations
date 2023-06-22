@@ -77,7 +77,7 @@ if ($ADMIN->fulltree) {
             new lang_string('untranslatedpages_desc', 'filter_translations'),
             '/blocks/configurable_reports/viewreport.php'
         )
-    );
+    );/* 
 
     $settings->add(new admin_setting_configmultiselect(
         'filter_translations/excludelang',
@@ -158,14 +158,35 @@ if ($ADMIN->fulltree) {
         null,
         PARAM_RAW_TRIMMED,
         40
-    ));
+    )); */
 
     $settings->add(new admin_setting_heading('customapi', get_string('customapi', 'filter_translations', ''), ''));
 
-    $settings->add(new admin_setting_configcheckbox(
+    /* $settings->add(new admin_setting_configcheckbox(
         'filter_translations/translatetokinya',
         get_string('translatetokinya', 'filter_translations'),
         '',
         false
-    ));
+    )); */
+
+    $selectedLanguages = get_config('filter_translations', 'languages');
+    
+    if (strstr($selectedLanguages, ',')) {
+        $selectedLanguagesArray = explode(',', $selectedLanguages);
+    } else {
+        $selectedLanguagesArray = [$selectedLanguages];
+    }
+
+    foreach ($selectedLanguagesArray as $key => $selectedLanguage) {
+        $selectedLanguagesArray[$selectedLanguage] = get_string_manager()->get_list_of_languages()[$selectedLanguage];
+        unset($selectedLanguagesArray[$key]);
+    }
+
+    $setting = new admin_setting_configmultiselect('filter_translations/selectedlanguages', 'Selected Languages', '', [], $selectedLanguagesArray);
+    $settings->add($setting);
+    $setting->set_locked_flag_options(admin_setting_flag::DISABLED, true);
+
+    $setting = new admin_setting_configmultiselect('filter_translations/languages', 'Languages', '', [], get_string_manager()->get_list_of_languages());
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
 }
