@@ -56,10 +56,11 @@ class translatetokinya extends translationprovider {
                 $cache->purge();
             } */
 
-            if (empty($config->translatetokinya)) {
+            if (empty($config->languages)) {
                 $config = false;
             }
         }
+        // print_r($config);
 
         return $config;
     }
@@ -78,7 +79,7 @@ class translatetokinya extends translationprovider {
      */
     protected function generate_translation($text, $targetlanguage) {
         $config = self::config();
-        // print_r($config);
+        // print_r($text);
 
         if (empty($config)) {
             return null;
@@ -131,12 +132,12 @@ class translatetokinya extends translationprovider {
                 'alt' => '',
                 'use_multi' => 'multi'
             ];
+            // print_r($params);
             if (count($texts) > 0) {
                 $params['texts'] = $texts;
             } else {
                 $params['text'] = $text;
             }
-            // print_r($params);
             $resp = $curl->post($url->out(false), json_encode($params));
         } catch (\Exception $ex) {
             error_log("Error calling Translate to Kinya API: \n" . $ex->getMessage());
@@ -153,7 +154,6 @@ class translatetokinya extends translationprovider {
 
         $resp = json_decode($resp);
 
-        // print_r($resp);
         if (empty($resp->translation)) {
             return null;
         }
@@ -164,12 +164,12 @@ class translatetokinya extends translationprovider {
             $text = $resp->translation;
         }
 
-        $text = $resp->translation;
-
         // Swap the base 64 encoded images back in.
         foreach ($base64s as $md5 => $base64) {
             $text = str_replace($md5, $base64, $text);
         }
+
+        // print_r(['text' => $text]);
 
         return $text;
     }
