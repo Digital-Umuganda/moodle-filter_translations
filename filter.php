@@ -74,13 +74,13 @@ class filter_translations extends moodle_text_filter {
 
         $skip = false;
 
-        if (in_array(current_language(),
+        /* if (in_array(current_language(),
             explode(
                 ',',
                 get_config('filter_translations', 'excludelang')
             ))) {
             $skip = true;
-        }
+        } */
 
         if (!$skip && in_array($SCRIPT,
             preg_split(

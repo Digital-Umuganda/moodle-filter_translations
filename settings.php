@@ -79,13 +79,13 @@ if ($ADMIN->fulltree) {
         )
     ); 
 
-    $settings->add(new admin_setting_configmultiselect(
+    /* $settings->add(new admin_setting_configmultiselect(
         'filter_translations/excludelang',
         get_string('excludelang', 'filter_translations'),
         get_string('excludelang_desc', 'filter_translations'),
         [],
         $list_of_translations
-    ));
+    )); */
 
     $settings->add(new admin_setting_heading('logging', get_string('logging', 'filter_translations'), ''));
 
