@@ -115,7 +115,7 @@ class filter_translations extends moodle_text_filter {
         $foundhash = $this->findandremovehash($text);
         // Generate a hash based on the text to be translated.
         $generatedhash = $this->generatehash($text);
-        $targetlanguage = current_language();
+        $targetlanguage = get_config('filter_translations', 'contentlanguage') ?? current_language();
 
         $cachekey = $targetlanguage . ($generatedhash ?? $foundhash);
 
