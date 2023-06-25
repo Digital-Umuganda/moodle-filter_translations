@@ -77,7 +77,7 @@ if ($ADMIN->fulltree) {
             new lang_string('untranslatedpages_desc', 'filter_translations'),
             '/blocks/configurable_reports/viewreport.php'
         )
-    );/* 
+    ); 
 
     $settings->add(new admin_setting_configmultiselect(
         'filter_translations/excludelang',
@@ -118,7 +118,7 @@ if ($ADMIN->fulltree) {
         DAYSECS
     ));
 
-    $settings->add(new admin_setting_heading('languagestringreverseapi', get_string('languagestringreverse', 'filter_translations'), ''));
+    /* $settings->add(new admin_setting_heading('languagestringreverseapi', get_string('languagestringreverse', 'filter_translations'), ''));
 
     $settings->add(new admin_setting_configcheckbox(
         'filter_translations/languagestringreverse_enable',
@@ -187,6 +187,10 @@ if ($ADMIN->fulltree) {
     $setting->set_locked_flag_options(admin_setting_flag::DISABLED, true);
 
     $setting = new admin_setting_configmultiselect('filter_translations/languages', 'Languages', '', [], get_string_manager()->get_list_of_languages());
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    $setting = new admin_setting_configselect('filter_translations/contentlanguage', 'Content Language', '', '', $selectedLanguagesArray);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 }
