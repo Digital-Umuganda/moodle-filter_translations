@@ -127,7 +127,7 @@ class translatetokinya extends translationprovider {
         try {
             // print_r($targetlanguage);
             $params = [
-                'src' => 'en',
+                'src' => current_language(),
                 'tgt' => $targetlanguage,
                 'alt' => '',
                 'use_multi' => 'multi'
