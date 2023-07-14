@@ -29,20 +29,24 @@ namespace filter_translations\translationproviders;
 use admin_setting_configcheckbox;
 use admin_setting_configtext;
 use curl;
+use DOMDocument;
+use DOMXPath;
 use filter_translations\translation;
 use moodle_url;
 
 /**
  * Translation provider to fetch and then retain translations from Translate to Kinya API.
  */
-class translatetokinya extends translationprovider {
+class translatetokinya extends translationprovider
+{
     /**
      * If translate to kinya api is enabled and configured return config, else return false.
      *
      * @return false|mixed|object|string|null
      * @throws \dml_exception
      */
-    private static function config() {
+    private static function config()
+    {
         static $config = null;
 
         if (!isset($config)) {
@@ -77,9 +81,10 @@ class translatetokinya extends translationprovider {
      * @throws \dml_exception
      * @throws \moodle_exception
      */
-    protected function generate_translation($text, $targetlanguage) {
+    protected function generate_translation($text, $targetlanguage)
+    {
         $config = self::config();
-        // print_r($text);
+        // print_r(['target' => $targetlanguage]);
 
         if (empty($config)) {
             return null;
@@ -111,11 +116,38 @@ class translatetokinya extends translationprovider {
 
         $texts = [];
 
-        if (strstr($text, '.')) {
+        /* if (strstr($text, '.')) {
             $texts = explode('.', $text);
             $texts = $this->remove_empty_text_strings($texts);
             // print_r($texts);
+        } */
+
+        // echo($text);
+        //Make a new DomDocument object.
+        $dom = new DOMDocument;
+        //Load the html into the object.
+        $dom->loadHTML($text);
+        //Discard white space.
+        $dom->preserveWhiteSpace = false;
+
+        // echo "<script>console.log('$text')</script>";
+
+        // print_r($texts);
+        $xpath = new DOMXPath($dom);
+        if (count($xpath->document->childNodes) > 1) {
+            // print_r($xpath->document->childNodes);
+            foreach ($xpath->document->childNodes as $key => $child) {
+                foreach ($child->childNodes as $c) {
+                    if (count($c->childNodes) > 1) {
+                        foreach ($c->childNodes as $a) {
+                            $texts[] = $a->nodeValue;
+                        }
+                    }
+                }
+            };
         }
+
+        // print_r($texts);
 
         // $url = new moodle_url($config->google_apiendpoint, ['key' => $config->google_apikey]);
         if (count($texts) > 0) {
@@ -164,6 +196,8 @@ class translatetokinya extends translationprovider {
             $text = $resp->translation;
         }
 
+        // print_r($text);
+
         // Swap the base 64 encoded images back in.
         foreach ($base64s as $md5 => $base64) {
             $text = str_replace($md5, $base64, $text);
@@ -179,12 +213,14 @@ class translatetokinya extends translationprovider {
      *
      * @return void
      */
-    private function backoff() {
+    private function backoff()
+    {
         set_config('google_backoffonerror', true, 'filter_translations');
         set_config('google_backoffonerror_time', time(), 'filter_translations');
     }
 
-    private function remove_empty_text_strings(array $texts): array {
+    private function remove_empty_text_strings(array $texts): array
+    {
         foreach ($texts as $index => $text) {
             if (strlen(trim($text)) == 0) {
                 unset($texts[$index]);
