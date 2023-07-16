@@ -116,11 +116,11 @@ class translatetokinya extends translationprovider
 
         $texts = [];
 
-        /* if (strstr($text, '.')) {
+        if (strstr($text, '.')) {
             $texts = explode('.', $text);
             $texts = $this->remove_empty_text_strings($texts);
             // print_r($texts);
-        } */
+        }
 
         // echo($text);
         //Make a new DomDocument object.
@@ -133,7 +133,7 @@ class translatetokinya extends translationprovider
         // echo "<script>console.log('$text')</script>";
 
         // print_r($texts);
-        $xpath = new DOMXPath($dom);
+        /* $xpath = new DOMXPath($dom);
         if (count($xpath->document->childNodes) > 1) {
             // print_r($xpath->document->childNodes);
             foreach ($xpath->document->childNodes as $key => $child) {
@@ -145,7 +145,7 @@ class translatetokinya extends translationprovider
                     }
                 }
             };
-        }
+        } */
 
         // print_r($texts);
 
