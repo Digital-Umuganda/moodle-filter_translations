@@ -193,4 +193,8 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configselect('filter_translations/contentlanguage', 'Content Language', '', '', $selectedLanguagesArray);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
+
+    $setting = new admin_setting_configselect('filter_translations/widgetlanguage', 'Widget Language', '', '', $selectedLanguagesArray);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
 }
