@@ -161,7 +161,7 @@ class translatetokinya extends translationprovider
             $params = [
                 'src' => current_language(),
                 'tgt' => $targetlanguage,
-                'alt' => '',
+                'alt' => 'education',
                 'use_multi' => 'multi'
             ];
             // print_r($params);
