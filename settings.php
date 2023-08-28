@@ -79,13 +79,13 @@ if ($ADMIN->fulltree) {
         )
     ); 
 
-    /* $settings->add(new admin_setting_configmultiselect(
+    $settings->add(new admin_setting_configmultiselect(
         'filter_translations/excludelang',
         get_string('excludelang', 'filter_translations'),
         get_string('excludelang_desc', 'filter_translations'),
         [],
         $list_of_translations
-    )); */
+    ));
 
     $settings->add(new admin_setting_heading('logging', get_string('logging', 'filter_translations'), ''));
 
@@ -195,6 +195,10 @@ if ($ADMIN->fulltree) {
     $settings->add($setting);
 
     $setting = new admin_setting_configselect('filter_translations/widgetlanguage', 'Widget Language', '', '', $selectedLanguagesArray);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    $setting = new admin_setting_configselect('filter_translations/usepopuptranslation', 'Use popup translation', '', '', ['', 'Yes', 'No']);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 }
