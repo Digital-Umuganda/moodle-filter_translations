@@ -1,6 +1,6 @@
-This plugin requires the [Moodle Atto Translations](https://github.com/andrewhancox/moodle-atto_translations) plugin.
+This is a fork of [Moodle Atto Translations](https://github.com/andrewhancox/moodle-filter_translations). We implemented our custom self hosted machine translation API, and a widget that can translate courses based on the specified languages.
 
-Full documentation is available at: https://docs.moodle.org/311/en/Content_translation_plugin_set
+This plugin requires the [Moodle Atto Translations](https://github.com/andrewhancox/moodle-atto_translations) plugin.
 
 # To Install it manually #
 - Unzip the plugin in the moodle .../filter/translations directory.
@@ -77,13 +77,13 @@ php cli/insert_spans.php
 Author
 ------
 
-The module has been written and is currently maintained by Andrew Hancox on behalf of [Open Source Learning](https://opensourcelearning.co.uk).
+The module has been written and is currently maintained by Andrew Hancox but now it is being maintained by Elvis Peace NDAHAYO RUGERO on behalf of [Digital Umuganda](https://digitalumuganda.com).
 
 Useful links
 ------------
 
-* [Open Source Learning](https://opensourcelearning.co.uk)
-* [Bug tracker](https://github.com/andrewhancox/moodle-filter_translations/issues)
+* [Original documentation](https://docs.moodle.org/311/en/Content_translation_plugin_set)
+* [Bug tracker](https://github.com/Digital-Umuganda/moodle-filter_translations/issues)
 
 License
 -------
