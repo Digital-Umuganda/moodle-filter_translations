@@ -24,7 +24,34 @@ Since the filter makes database calls and, if Google Translate is enabled, web s
 - Finally, if a translation has a 'last generated hash' (meaning the MD5 hash of the content it was last updated in reference to) which matches the MD5 hash of the content then use that.
 
 # To Use it #
-Users with the 'filter/translations:edittranslations' capability will see an icon in the top right hand corner of the screen to enable the translator view of the course. At this point all translatable text will have an icon injected next to it to allow it to be translated.
+In order to use this plugin, you have to first install and enable the plugin. If you don't know how to install or how to enable the plugin, the instructions can be found at the beginning of this page.
+
+After enabling the plugin, you can set the course content language, and enable or disable widget/popup translations that typically pops up when a user selects text from the course content. You can also set the target language for the widget/popup translations.
+
+Let's take a look at how we are going to do that.
+
+## Set the course content language ##
+You can set the course content language using **one** of the following ways:
+1. The easy way to do this is to use the top navigation bar. That navigation bar can only be accessed when you are on a course page.
+<img src="images/Set course content language using the navigation bar.png" />
+2. The other way is to set it in the settings
+<img src="images/Set course content language via settings.png" />
+
+## Enable or disable widget/popup translations ##
+You can enable or disable widget/popup translations using **one** of the following ways:
+1. The easy way to do this is to use the top navigation bar. That navigation bar can only be accessed when you are on a course page.
+<img src="images/Enable or disable widget using the navigation bar.png" />
+2. The other way is to set it in the settings
+<img src="images/Enable or disable widget via settings.png" />
+
+## Set the target language for the widget/popup translations ##
+You can enable or disable widget/popup translations using **one** of the following ways:
+1. You can set this in settings
+<img src="images/Set target widget language via settings.png" />
+2. Or you can set it by changing the target language using the widget/popup.
+<img src="images/Set target widget language using the widget.png" />
+
+**N.B**: Users with the 'filter/translations:edittranslations' capability will see an icon in the top right hand corner of the screen to enable the translator view of the course. At this point all translatable text will have an icon injected next to it to allow it to be translated.
 
 # To migrate from filter_fulltranslate #
 A CLI tool is available to migrate all translations across from the filter_fulltranslate.
