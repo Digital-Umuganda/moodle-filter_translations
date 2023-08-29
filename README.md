@@ -11,7 +11,7 @@ Full documentation is available at: https://docs.moodle.org/311/en/Content_trans
 - Go to "Site Administration &gt;&gt; Plugins &gt;&gt; Filters &gt;&gt; Content translations" and choose a caching level appropriate to your site.
 
 # Cacheing #
-Since the filter makes database calls and, if Google Translate is enabled, web service calls, it is advisable to enable caching by working with the cachingmode setting. If you have a small volume of course material in active use then Application mode caching is advised, if you have a large volume then Session. In any case, the default of Request is rarely the optimal choice.
+Since the filter makes database calls and web service calls, it is advisable to enable caching by working with the cachingmode setting. If you have a small volume of course material in active use then Application mode caching is advised, if you have a large volume then Session. In any case, the default of Request is rarely the optimal choice.
 
 # How it chooses translations #
 
@@ -33,7 +33,7 @@ Let's take a look at how we are going to do that.
 ## Set the course content language ##
 You can set the course content language using **one** of the following ways:
 1. The easy way to do this is to use the top navigation bar. That navigation bar can only be accessed when you are on a course page.
-<img src="images/Set course content language using the navigation bar.png" />
+<img src="images/Set course content language using the navigation bar.png" style="width: 80%" />
 2. The other way is to set it in the settings
 <img src="images/Set course content language via settings.png" />
 
