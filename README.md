@@ -33,7 +33,7 @@ Let's take a look at how we are going to do that.
 ## Set the course content language ##
 You can set the course content language using **one** of the following ways:
 1. The easy way to do this is to use the top navigation bar. That navigation bar can only be accessed when you are on a course page.
-<div><img src="images/Set course content language using the navigation bar.png" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" /></div>
+<div align="center"><img src="images/Set course content language using the navigation bar.png" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" /></div>
 2. The other way is to set it in the settings
 <img src="images/Set course content language via settings.png" style="width: 80%" />
 
