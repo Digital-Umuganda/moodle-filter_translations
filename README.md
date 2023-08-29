@@ -1,4 +1,4 @@
-This is a fork of [Moodle Atto Translations](https://github.com/andrewhancox/moodle-filter_translations). We implemented our custom self hosted machine translation API, and a widget that can translate courses based on the specified languages.
+This is a fork of [Moodle Filter Translations](https://github.com/andrewhancox/moodle-filter_translations). We implemented our custom self hosted machine translation API, and a widget that can translate courses based on the specified languages.
 
 This plugin requires the [Moodle Atto Translations](https://github.com/andrewhancox/moodle-atto_translations) plugin.
 
