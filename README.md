@@ -35,21 +35,21 @@ You can set the course content language using **one** of the following ways:
 1. The easy way to do this is to use the top navigation bar. That navigation bar can only be accessed when you are on a course page.
 <div align="center"><img src="images/Set course content language using the navigation bar.png" style="width: 80%" /></div>
 2. The other way is to set it in the settings
-<img src="images/Set course content language via settings.png" style="width: 80%" />
+<div align="center"><img src="images/Set course content language via settings.png" style="width: 80%" /></div>
 
 ## Enable or disable widget/popup translations ##
 You can enable or disable widget/popup translations using **one** of the following ways:
 1. The easy way to do this is to use the top navigation bar. That navigation bar can only be accessed when you are on a course page.
-<img src="images/Enable or disable widget using the navigation bar.png" style="width: 80%" />
+<div align="center"><img src="images/Enable or disable widget using the navigation bar.png" style="width: 80%" /></div>
 2. The other way is to set it in the settings
-<img src="images/Enable or disable widget via settings.png" style="width: 80%" />
+<div align="center"><img src="images/Enable or disable widget via settings.png" style="width: 80%" /></div>
 
 ## Set the target language for the widget/popup translations ##
 You can enable or disable widget/popup translations using **one** of the following ways:
 1. You can set this in settings
-<img src="images/Set target widget language via settings.png" style="width: 80%" />
+<div align="center"><img src="images/Set target widget language via settings.png" style="width: 80%" /></div>
 2. Or you can set it by changing the target language using the widget/popup.
-<img src="images/Set target widget language using the widget.png" style="width: 80%" />
+<div align="center"><img src="images/Set target widget language using the widget.png" style="width: 80%" /></div>
 
 **N.B**: Users with the 'filter/translations:edittranslations' capability will see an icon in the top right hand corner of the screen to enable the translator view of the course. At this point all translatable text will have an icon injected next to it to allow it to be translated.
 
